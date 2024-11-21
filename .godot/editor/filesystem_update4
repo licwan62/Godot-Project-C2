@@ -1,0 +1,8 @@
+res://scenes/world_1.tscn
+res://assets/topbar_label_settings.tres
+res://ai/tasks/move_forward.gd
+res://ai/trees/agent_remote_attack.tres
+res://ai/trees/agent_melee.tres
+res://resource/punch_combo.tres
+res://resource/sword_combo.tres
+res://resource/gun_combo.tres

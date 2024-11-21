@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="AirComboResource" load_steps=2 format=3 uid="uid://bosvat8wls42o"]
+
+[ext_resource type="Script" path="res://resource/air_combo/air_combo.gd" id="1_lqcqc"]
+
+[resource]
+script = ExtResource("1_lqcqc")
+air_combo = Array[StringName]([&"slash_air", &"slash_air", &"slash_air"])
+down_anim = &"slash_down"

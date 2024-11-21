@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Weapon" load_steps=3 format=3 uid="uid://emjgvs0cofly"]
+
+[ext_resource type="Script" path="res://resource/weapon/weapon.gd" id="1_pirei"]
+[ext_resource type="Texture2D" uid="uid://c6k7y5xlncvbr" path="res://assets/gun.png" id="2_p54ky"]
+
+[resource]
+script = ExtResource("1_pirei")
+name = &"gun"
+texture = ExtResource("2_p54ky")
+strengh = 5.0
+attribute_type = "bullet"
+attribute_value = 20

@@ -1,0 +1,15 @@
+[remap]
+
+importer="import_gif_to_sprite_frames"
+type="SpriteFrames"
+uid="uid://c0itd445jx35p"
+path="res://.godot/imported/hot wheels small.gif-beb995f33cad1d42616f278eacf6e7e1.tres"
+
+[deps]
+
+source_file="res://assets/Bot Wheel/hot wheels small.gif"
+dest_files=["res://.godot/imported/hot wheels small.gif-beb995f33cad1d42616f278eacf6e7e1.tres"]
+
+[params]
+
+frames_per_second=30

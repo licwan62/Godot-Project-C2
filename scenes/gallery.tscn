@@ -1,0 +1,131 @@
+[gd_scene load_steps=10 format=3 uid="uid://rmp3ug3oq0ey"]
+
+[ext_resource type="Script" path="res://scenes/help_page.gd" id="2_ja04n"]
+[ext_resource type="Texture2D" uid="uid://b6cnxhdspm851" path="res://assets/example.png" id="3_f6u66"]
+[ext_resource type="Theme" uid="uid://04himsfca34n" path="res://resource/hud_theme.tres" id="4_tb3ae"]
+[ext_resource type="FontFile" uid="uid://cwsklbj8xil82" path="res://assets/fonts/junction_bold.otf" id="5_vsu7d"]
+[ext_resource type="LabelSettings" uid="uid://bvjr3ynicskkn" path="res://assets/topbar_label_settings.tres" id="6_qaqe5"]
+[ext_resource type="Texture2D" uid="uid://phi3l6b0hu13" path="res://assets/Bot Wheel/wheel_demo.png" id="6_sju7g"]
+[ext_resource type="Texture2D" uid="uid://cfvjufu12cyvs" path="res://addons/limboai/icons/BTAction.svg" id="7_wtrcr"]
+[ext_resource type="Texture2D" uid="uid://bip4glbljii8o" path="res://assets/Ball and Chain Bot/chain_demo.png" id="8_vk0hj"]
+
+[sub_resource type="Theme" id="Theme_dlkea"]
+default_font = ExtResource("5_vsu7d")
+default_font_size = 50
+
+[node name="Gallery" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_ja04n")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+self_modulate = Color(0.824259, 0.582769, 0.573927, 1)
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_f6u66")
+expand_mode = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+custom_minimum_size = Vector2(800, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 256.0
+offset_top = 80.0
+offset_right = -256.0
+offset_bottom = -72.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_tb3ae")
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="Title" type="Label" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_dlkea")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0.0923971, 0.0923971, 0.0923971, 1)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/outline_size = 10
+text = "Gallery"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
+texture_filter = 1
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+texture = ExtResource("6_sju7g")
+stretch_mode = 4
+
+[node name="Content" type="Label" parent="CanvasLayer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(800, 0)
+layout_mode = 2
+text = "<< Carder >>
+
+Young was beaten by several enemies and yielding for help when Lee spot him on the third world
+
+After fighting, Young confessed that he was a ‘Snaker’ working for ‘Company’ who responsible for attracting victims here
+
+Young was working online making friends in game, and pretending to be generous giving expansive gaming gadgets in order to keep reliance to these targets. At some point Young will invite his target to travel with in ‘Miawadie’ 
+
+After attracted victims here, he didn’t get reward as expected but forced to work to pay for thousands of debit
+
+Lee fight against ‘Carder’ and get Young escaped"
+label_settings = ExtResource("6_qaqe5")
+autowrap_mode = 2
+justification_flags = 162
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer2"]
+texture_filter = 1
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+texture = ExtResource("8_vk0hj")
+stretch_mode = 4
+
+[node name="Content" type="Label" parent="CanvasLayer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+text = "<< Supervisor >>
+
+Wynn has been stuck in ‘Company’ for one year, being sold by former criminal group by hundreds of dollar
+
+Wynn came to the country ‘Miawadie’ for high-paid salary as ‘Company’ promised, however, his passport and mobile were seized and being forced to commit telecommuting crime for almost a year.
+
+Wynn asked Lee for help, and Lee operate some trap and get down some the ‘Supervisor’ and saved him ultimately
+"
+label_settings = ExtResource("6_qaqe5")
+autowrap_mode = 2
+justification_flags = 162
+
+[node name="Button" type="Button" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "Back"
+icon = ExtResource("7_wtrcr")
+
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/Button" to="." method="_on_button_pressed"]

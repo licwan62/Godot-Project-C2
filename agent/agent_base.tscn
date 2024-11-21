@@ -1,0 +1,144 @@
+[gd_scene load_steps=19 format=3 uid="uid://cdgyp8df0w3mk"]
+
+[ext_resource type="Script" path="res://agent/agent_base.gd" id="1_rky18"]
+[ext_resource type="Script" path="res://agent/health.gd" id="1_y2opi"]
+[ext_resource type="Script" path="res://agent/hitbox.gd" id="2_k24wa"]
+[ext_resource type="Script" path="res://agent/hurtbox.gd" id="4_67ys1"]
+[ext_resource type="Texture2D" uid="uid://x36y6d5dxx0e" path="res://assets/player/Sprites/FX/DashDust/DashDust01.png" id="8_klrxv"]
+[ext_resource type="Texture2D" uid="uid://dgljpnwllys2e" path="res://assets/player/Sprites/FX/DashDust/DashDust02.png" id="9_xup3g"]
+[ext_resource type="Texture2D" uid="uid://fa88xws0tkv2" path="res://assets/player/Sprites/FX/DashDust/DashDust03.png" id="10_mlpof"]
+[ext_resource type="Texture2D" uid="uid://csqrsp547pocp" path="res://assets/player/Sprites/FX/DashDust/DashDust04.png" id="11_i8bkl"]
+[ext_resource type="Texture2D" uid="uid://ds42e6maiv0jy" path="res://assets/smoke.png" id="11_quqw0"]
+[ext_resource type="Texture2D" uid="uid://chd2uivs4f1t4" path="res://assets/player/Sprites/FX/DashDust/DashDust05.png" id="12_vsmx7"]
+[ext_resource type="Texture2D" uid="uid://b5b34ytes4ljq" path="res://assets/player/Sprites/FX/DashDust/DashDust06.png" id="13_xc2w6"]
+[ext_resource type="Texture2D" uid="uid://tud1rk0073x3" path="res://assets/player/Sprites/FX/DashDust/DashDust07.png" id="14_o48ve"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_w2sjr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_klrxv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_xup3g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_mlpof")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_i8bkl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_vsmx7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_xc2w6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_o48ve")
+}],
+"loop": true,
+"name": &"default",
+"speed": 20.0
+}]
+
+[sub_resource type="Curve" id="Curve_u3q77"]
+_data = [Vector2(0, 0.482955), 0.0, 1.4, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_r0unc"]
+curve = SubResource("Curve_u3q77")
+
+[sub_resource type="Curve" id="Curve_lgnjm"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.169811, 1), 1.397, 1.397, 0, 0, Vector2(1, 0.0578729), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_jtpgi"]
+curve = SubResource("Curve_lgnjm")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_c5uei"]
+lifetime_randomness = 0.5
+emission_shape = 3
+emission_box_extents = Vector3(20, 5, 1)
+direction = Vector3(0, -1, 0)
+spread = 40.0
+initial_velocity_min = 15.0
+initial_velocity_max = 100.0
+radial_velocity_min = -40.0
+radial_velocity_max = -5.00002
+gravity = Vector3(0, 0, 0)
+scale_min = 0.1
+scale_max = 0.3
+scale_curve = SubResource("CurveTexture_jtpgi")
+color = Color(1, 1, 1, 0.784314)
+alpha_curve = SubResource("CurveTexture_r0unc")
+
+[node name="AgentBase" type="CharacterBody2D"]
+collision_mask = 15
+script = ExtResource("1_rky18")
+
+[node name="Root" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Appearance" type="Node2D" parent="Root"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Root/Appearance"]
+unique_name_in_owner = true
+texture_filter = 1
+position = Vector2(0, -42.26)
+
+[node name="Hitbox" type="Area2D" parent="Root"]
+unique_name_in_owner = true
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("2_k24wa")
+
+[node name="HitboxCollisionFront" type="CollisionShape2D" parent="Root/Hitbox"]
+position = Vector2(32, -16)
+disabled = true
+debug_color = Color(0.834245, 0.0988037, 0.524076, 0.419608)
+
+[node name="HitboxCollisionUp" type="CollisionShape2D" parent="Root/Hitbox"]
+position = Vector2(0, -40)
+disabled = true
+debug_color = Color(0.432627, 0.522296, 0.792062, 0.42)
+
+[node name="HitboxCollisionDown" type="CollisionShape2D" parent="Root/Hitbox"]
+position = Vector2(-4.76837e-07, 8)
+disabled = true
+debug_color = Color(0.606452, 0.530429, 0.29933, 0.42)
+
+[node name="Hurtbox" type="Area2D" parent="Root"]
+collision_layer = 32
+collision_mask = 16
+script = ExtResource("4_67ys1")
+
+[node name="HurtboxCollision" type="CollisionShape2D" parent="Root/Hurtbox"]
+position = Vector2(-4.76837e-07, -24)
+debug_color = Color(0.6289, 0.509483, 0.41285, 0.42)
+
+[node name="FX" type="Node2D" parent="Root"]
+
+[node name="DashDust" type="AnimatedSprite2D" parent="Root/FX"]
+visible = false
+position = Vector2(0, 24)
+sprite_frames = SubResource("SpriteFrames_w2sjr")
+frame = 6
+frame_progress = 0.445002
+
+[node name="Death" type="GPUParticles2D" parent="Root/FX"]
+emitting = false
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_c5uei")
+texture = ExtResource("11_quqw0")
+lifetime = 0.7
+one_shot = true
+explosiveness = 0.8
+fixed_fps = 60
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -20)
+scale = Vector2(1, 0.84)
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("1_y2opi")

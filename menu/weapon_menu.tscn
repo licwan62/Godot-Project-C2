@@ -1,0 +1,208 @@
+[gd_scene load_steps=33 format=3 uid="uid://kvk50208tf4m"]
+
+[ext_resource type="PackedScene" uid="uid://sdyfro7qs6aa" path="res://menu/slot.tscn" id="1_pmor6"]
+[ext_resource type="Script" path="res://menu/weapon_menu.gd" id="1_t22h1"]
+[ext_resource type="Resource" uid="uid://emjgvs0cofly" path="res://resource/weapon/gun.tres" id="2_oxc5w"]
+[ext_resource type="Resource" uid="uid://dty8uk57p7h6s" path="res://resource/weapon/sword.tres" id="3_16lnk"]
+[ext_resource type="Resource" uid="uid://dsyfp6fl0ycr6" path="res://resource/weapon/punch.tres" id="4_dxh31"]
+[ext_resource type="Texture2D" uid="uid://c8svc388ugibj" path="res://assets/player/Sprites/Combat/GunRun/GunRun01.png" id="6_nrx0j"]
+[ext_resource type="Texture2D" uid="uid://ui158pw4ucjl" path="res://assets/player/Sprites/Combat/GunRun/GunRun02.png" id="7_xbawd"]
+[ext_resource type="Texture2D" uid="uid://74o83i7vs8q2" path="res://assets/player/Sprites/Combat/GunRun/GunRun03.png" id="8_s1p4k"]
+[ext_resource type="Texture2D" uid="uid://ncrl2ow3awpq" path="res://assets/player/Sprites/Combat/GunRun/GunRun04.png" id="9_3r0rk"]
+[ext_resource type="Texture2D" uid="uid://d0oljihhfbrav" path="res://assets/player/Sprites/Combat/GunRun/GunRun05.png" id="10_ye30a"]
+[ext_resource type="Texture2D" uid="uid://dvctxx41x7xgr" path="res://assets/player/Sprites/Combat/GunRun/GunRun06.png" id="11_mswaa"]
+[ext_resource type="Texture2D" uid="uid://cphl45jdgg6fh" path="res://assets/player/Sprites/Combat/GunRun/GunRun07.png" id="12_o772x"]
+[ext_resource type="Texture2D" uid="uid://b0yw52digvqv0" path="res://assets/player/Sprites/Combat/GunRun/GunRun08.png" id="13_mwl3i"]
+[ext_resource type="Texture2D" uid="uid://p2cak7jqovcs" path="res://assets/player/Sprites/Run/Run01.png" id="14_gture"]
+[ext_resource type="Texture2D" uid="uid://b0bd4bvrshl1k" path="res://assets/player/Sprites/Run/Run02.png" id="15_0c77x"]
+[ext_resource type="Texture2D" uid="uid://vgpmupxntyis" path="res://assets/player/Sprites/Run/Run03.png" id="16_ff3j3"]
+[ext_resource type="Texture2D" uid="uid://ukkxoj0sqg42" path="res://assets/player/Sprites/Run/Run04.png" id="17_ec4dj"]
+[ext_resource type="Texture2D" uid="uid://ctdc8j7l4sudx" path="res://assets/player/Sprites/Run/Run05.png" id="18_aidof"]
+[ext_resource type="Texture2D" uid="uid://bkq4ocujmrprx" path="res://assets/player/Sprites/Run/Run06.png" id="19_bnrae"]
+[ext_resource type="Texture2D" uid="uid://78iysmea64d8" path="res://assets/player/Sprites/Run/Run07.png" id="20_fpm3c"]
+[ext_resource type="Texture2D" uid="uid://p7238jeapr3q" path="res://assets/player/Sprites/Run/Run08.png" id="21_sa7yq"]
+[ext_resource type="Texture2D" uid="uid://bl2bs2tpbnsq3" path="res://assets/player/Sprites/Combat/SwordRun/SwordRun01.png" id="22_embha"]
+[ext_resource type="Texture2D" uid="uid://1ggux2s8co3q" path="res://assets/player/Sprites/Combat/SwordRun/SwordRun02.png" id="23_1lll5"]
+[ext_resource type="Texture2D" uid="uid://sqijqj86xrk8" path="res://assets/player/Sprites/Combat/SwordRun/SwordRun03.png" id="24_wahm3"]
+[ext_resource type="Texture2D" uid="uid://b2s0j3tj5ob5n" path="res://assets/player/Sprites/Combat/SwordRun/SwordRun04.png" id="25_htqwh"]
+[ext_resource type="Texture2D" uid="uid://df314xpxscet2" path="res://assets/player/Sprites/Combat/SwordRun/SwordRun05.png" id="26_es4vp"]
+[ext_resource type="Texture2D" uid="uid://4rgtckgc5odu" path="res://assets/player/Sprites/Combat/SwordRun/SwordRun06.png" id="27_mx333"]
+[ext_resource type="Texture2D" uid="uid://6v0utkjj1tql" path="res://assets/player/Sprites/Combat/SwordRun/SwordRun07.png" id="28_263w8"]
+[ext_resource type="Texture2D" uid="uid://4evcjqdc87hy" path="res://assets/player/Sprites/Combat/SwordRun/SwordRun08.png" id="29_rqh5r"]
+
+[sub_resource type="Gradient" id="Gradient_gm4tv"]
+offsets = PackedFloat32Array(0, 0.248649, 0.57027)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0.664688, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_wfg7y"]
+gradient = SubResource("Gradient_gm4tv")
+width = 128
+height = 128
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, -0.22)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lwnxh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_nrx0j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_xbawd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_s1p4k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_3r0rk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_ye30a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_mswaa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_o772x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_mwl3i")
+}],
+"loop": true,
+"name": &"gun",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_gture")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_0c77x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_ff3j3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_ec4dj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_aidof")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_bnrae")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_fpm3c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_sa7yq")
+}],
+"loop": true,
+"name": &"none",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("22_embha")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_1lll5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_wahm3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_htqwh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_es4vp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_mx333")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_263w8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_rqh5r")
+}],
+"loop": true,
+"name": &"sword",
+"speed": 10.0
+}]
+
+[node name="WeaponMenu" type="Node2D"]
+script = ExtResource("1_t22h1")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/CenterContainer"]
+custom_minimum_size = Vector2(400, 400)
+layout_mode = 2
+texture = SubResource("GradientTexture2D_wfg7y")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer/CenterContainer/TextureRect"]
+unique_name_in_owner = true
+texture_filter = 1
+position = Vector2(0, -40)
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_lwnxh")
+animation = &"sword"
+centered = false
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -320.0
+offset_top = -150.0
+offset_right = 320.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="SlotNone" parent="CanvasLayer/HBoxContainer" instance=ExtResource("1_pmor6")]
+layout_mode = 2
+item = ExtResource("4_dxh31")
+
+[node name="SlotSword" parent="CanvasLayer/HBoxContainer" instance=ExtResource("1_pmor6")]
+layout_mode = 2
+item = ExtResource("3_16lnk")
+
+[node name="SlotGun" parent="CanvasLayer/HBoxContainer" instance=ExtResource("1_pmor6")]
+layout_mode = 2
+item = ExtResource("2_oxc5w")
+
+[node name="Button" type="Button" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 320.0
+offset_top = 96.0
+offset_right = 512.0
+offset_bottom = 172.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "EQUIP"
+
+[connection signal="pressed" from="CanvasLayer/HBoxContainer/SlotNone" to="." method="_on_slot_none_pressed"]
+[connection signal="pressed" from="CanvasLayer/HBoxContainer/SlotSword" to="." method="_on_slot_sword_pressed"]
+[connection signal="pressed" from="CanvasLayer/HBoxContainer/SlotGun" to="." method="_on_slot_gun_pressed"]
+[connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_button_pressed"]

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cq0qqwbwofn35"]
+
+[ext_resource type="Script" path="res://agent/drawable.gd" id="1_d06cq"]
+
+[node name="Drawable" type="Node2D"]
+script = ExtResource("1_d06cq")

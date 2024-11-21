@@ -1,0 +1,15 @@
+[remap]
+
+importer="import_gif_to_sprite_frames"
+type="SpriteFrames"
+uid="uid://rf5gus721t6u"
+path="res://.godot/imported/SpikeTiles.gif-c129ca48b316e9aa6aa02db1c378315b.tres"
+
+[deps]
+
+source_file="res://assets/objects/Spikes/SpikeTiles.gif"
+dest_files=["res://.godot/imported/SpikeTiles.gif-c129ca48b316e9aa6aa02db1c378315b.tres"]
+
+[params]
+
+frames_per_second=30

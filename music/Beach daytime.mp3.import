@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://db60o4faq14vc"
+path="res://.godot/imported/Beach daytime.mp3-ac1719016ca5f8c51b561da3db9535f5.mp3str"
+
+[deps]
+
+source_file="res://music/Beach daytime.mp3"
+dest_files=["res://.godot/imported/Beach daytime.mp3-ac1719016ca5f8c51b561da3db9535f5.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

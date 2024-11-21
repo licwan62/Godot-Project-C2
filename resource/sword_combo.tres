@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ComboResource" load_steps=2 format=3 uid="uid://ci727c4mvrdfc"]
+
+[ext_resource type="Script" path="res://resource/combo.gd" id="1_8l8g7"]
+
+[resource]
+script = ExtResource("1_8l8g7")
+ground_stand_combo = Array[StringName]([&"slash_1", &"slash_2", &"slash_3", &"slash_stand", &"slash_up"])
+ground_move_combo = Array[StringName]([&"slash_run", &"slash_run", &"slash_end"])
+air_combo = Array[StringName]([&"slash_air", &"slash_air", &"slash_down"])
+air_down_anim = &"slash_down"

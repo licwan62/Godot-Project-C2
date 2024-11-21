@@ -1,0 +1,187 @@
+[gd_scene load_steps=25 format=3 uid="uid://bnlrdr6wplkky"]
+
+[ext_resource type="PackedScene" uid="uid://cdgyp8df0w3mk" path="res://agent/agent_base.tscn" id="1_e0pas"]
+[ext_resource type="Script" path="res://agent/player/player.gd" id="2_hopxs"]
+[ext_resource type="Script" path="res://agent/player/state/ground_punch.gd" id="7_b4nay"]
+[ext_resource type="Script" path="res://agent/player/state/air_punch.gd" id="8_jwc6c"]
+[ext_resource type="Texture2D" uid="uid://bm6pi8yumfrfm" path="res://assets/player/Sprites/FrontFlip/FrontFlip.png" id="10_pdsr2"]
+[ext_resource type="Script" path="res://agent/player/state/climb.gd" id="26_dbtbl"]
+[ext_resource type="Script" path="res://agent/player/state/idle_state.gd" id="117_uvxr6"]
+[ext_resource type="Script" path="res://agent/player/state/move_state.gd" id="118_ggptv"]
+[ext_resource type="Script" path="res://agent/player/state/attack_state.gd" id="119_ck4nh"]
+[ext_resource type="Script" path="res://agent/player/state/dash_state.gd" id="120_lyy4m"]
+[ext_resource type="Script" path="res://agent/player/state/jump_state.gd" id="121_4xydr"]
+[ext_resource type="Script" path="res://agent/player/state/fall_state.gd" id="122_h0u3x"]
+[ext_resource type="Script" path="res://agent/player/state/die_state.gd" id="123_e4fsk"]
+[ext_resource type="Script" path="res://agent/player/state/stun_state.gd" id="124_rin60"]
+[ext_resource type="Script" path="res://agent/player/limbo_hsm.gd" id="197_oxy33"]
+[ext_resource type="Texture2D" uid="uid://bmgce1c8nccoi" path="res://assets/player/Sprites/Dash/Dash.png" id="251_sdxeq"]
+[ext_resource type="Script" path="res://agent/player/weapon_component.gd" id="261_3tnao"]
+[ext_resource type="Script" path="res://agent/player/draw_lines.gd" id="288_3uwki"]
+
+[sub_resource type="Shader" id="Shader_s5xc5"]
+code = "// NOTE: Shader automatically converted from Godot Engine 4.3.stable's CanvasItemMaterial.
+
+shader_type canvas_item;
+render_mode blend_mix;
+uniform int particles_anim_h_frames;
+uniform int particles_anim_v_frames;
+uniform bool particles_anim_loop;
+
+void vertex() {
+	float h_frames = float(particles_anim_h_frames);
+	float v_frames = float(particles_anim_v_frames);
+	VERTEX.xy /= vec2(h_frames, v_frames);
+	float particle_total_frames = float(particles_anim_h_frames * particles_anim_v_frames);
+	float particle_frame = floor(INSTANCE_CUSTOM.z * float(particle_total_frames));
+	if (!particles_anim_loop) {
+		particle_frame = clamp(particle_frame, 0.0, particle_total_frames - 1.0);
+	} else {
+		particle_frame = mod(particle_frame, particle_total_frames);
+	}
+
+	vec2 scale_uv = UV / vec2(h_frames, v_frames);
+	UV = scale_uv + vec2(
+		mod(particle_frame, h_frames) / h_frames,
+		floor((particle_frame + 0.5) / h_frames) / v_frames);
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hvksr"]
+shader = SubResource("Shader_s5xc5")
+shader_parameter/particles_anim_h_frames = 3
+shader_parameter/particles_anim_v_frames = 1
+shader_parameter/particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_tt5vk"]
+_data = [Vector2(0.0563798, 0.5), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_la6ho"]
+curve = SubResource("Curve_tt5vk")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8s0bv"]
+gravity = Vector3(0, 0, 0)
+scale_min = 2.0
+scale_max = 2.0
+alpha_curve = SubResource("CurveTexture_la6ho")
+anim_speed_min = 2.0
+anim_speed_max = 2.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8wvee"]
+size = Vector2(20, 57.1429)
+
+[node name="Player" instance=ExtResource("1_e0pas")]
+scale = Vector2(1.5, 1.5)
+platform_floor_layers = 4294967290
+script = ExtResource("2_hopxs")
+basic_speed = 300.0
+move_action = 1
+run_speed_rate = 1.5
+sprint_speed_rate = 3.0
+
+[node name="LimboHSM" type="LimboHSM" parent="." index="0"]
+script = ExtResource("197_oxy33")
+
+[node name="Idle" type="LimboState" parent="LimboHSM" index="0"]
+script = ExtResource("117_uvxr6")
+animations = Array[StringName]([&"idle", &"idle_with_sword", &"idle"])
+
+[node name="Move" type="LimboState" parent="LimboHSM" index="1"]
+script = ExtResource("118_ggptv")
+animations = Array[StringName]([&"run", &"run_with_sword", &"run_with_gun", &"walk"])
+
+[node name="Attack" type="LimboState" parent="LimboHSM" index="2"]
+unique_name_in_owner = true
+script = ExtResource("119_ck4nh")
+distance_to_slash_down = null
+
+[node name="GroundPunch" type="LimboState" parent="LimboHSM/Attack" index="0"]
+script = ExtResource("7_b4nay")
+
+[node name="AirPunch" type="LimboState" parent="LimboHSM/Attack" index="1"]
+script = ExtResource("8_jwc6c")
+
+[node name="GroundSword" type="LimboState" parent="LimboHSM/Attack" index="2"]
+script = ExtResource("7_b4nay")
+
+[node name="AirSword" type="LimboState" parent="LimboHSM/Attack" index="3"]
+script = ExtResource("8_jwc6c")
+
+[node name="GroundGun" type="LimboState" parent="LimboHSM/Attack" index="4"]
+script = ExtResource("7_b4nay")
+
+[node name="AirGun" type="LimboState" parent="LimboHSM/Attack" index="5"]
+script = ExtResource("8_jwc6c")
+
+[node name="Dash" type="LimboState" parent="LimboHSM" index="3"]
+script = ExtResource("120_lyy4m")
+animations = Array[StringName]([&"dash", &"front_flip"])
+dash_sprite_sheet = ExtResource("251_sdxeq")
+front_flip_sprite_sheet = ExtResource("10_pdsr2")
+
+[node name="Jump" type="LimboState" parent="LimboHSM" index="4"]
+script = ExtResource("121_4xydr")
+animations = Array[StringName]([&"jump", &"jump_with_sword", &"jump"])
+
+[node name="Fall" type="LimboState" parent="LimboHSM" index="5"]
+script = ExtResource("122_h0u3x")
+animations = Array[StringName]([&"jump", &"jump_with_sword", &"jump"])
+
+[node name="Die" type="LimboState" parent="LimboHSM" index="6"]
+script = ExtResource("123_e4fsk")
+
+[node name="Stun" type="LimboState" parent="LimboHSM" index="7"]
+script = ExtResource("124_rin60")
+
+[node name="Climb" type="LimboState" parent="LimboHSM" index="8"]
+script = ExtResource("26_dbtbl")
+
+[node name="AnimatedSprite2D" parent="Root/Appearance" index="0"]
+position = Vector2(0, -52.5)
+scale = Vector2(1.25, 1.25)
+animation = &"kick_stand"
+
+[node name="HitboxCollisionFront" parent="Root/Hitbox" index="0"]
+position = Vector2(34.6667, -23.1667)
+scale = Vector2(1, 0.813334)
+debug_color = Color(0.300328, 0.582763, 0.649373, 0.42)
+
+[node name="HitboxCollisionDown" parent="Root/Hitbox" index="2"]
+debug_color = Color(0.409386, 0.94348, 0.413029, 0.42)
+
+[node name="GhostParticle" type="GPUParticles2D" parent="Root/FX" index="1"]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_hvksr")
+position = Vector2(0, -16)
+emitting = false
+amount = 4
+process_material = SubResource("ParticleProcessMaterial_8s0bv")
+texture = ExtResource("251_sdxeq")
+lifetime = 0.3
+
+[node name="CollisionShape2D" parent="." index="2"]
+position = Vector2(0, -24)
+scale = Vector2(1, 0.84)
+shape = SubResource("RectangleShape2D_8wvee")
+
+[node name="HealthComponent" parent="." index="3"]
+unique_name_in_owner = true
+
+[node name="WeaponComponent" type="Node" parent="." index="4"]
+unique_name_in_owner = true
+script = ExtResource("261_3tnao")
+current_weapon = 1
+
+[node name="RayCastToFloor" type="RayCast2D" parent="." index="5"]
+visible = false
+target_position = Vector2(0, 500)
+collision_mask = 2
+
+[node name="RayCastToEnemy" type="RayCast2D" parent="." index="6"]
+visible = false
+self_modulate = Color(1, 0.298039, 0.65098, 0.784314)
+
+[node name="DrawLines" type="Node2D" parent="." index="7"]
+unique_name_in_owner = true
+script = ExtResource("288_3uwki")

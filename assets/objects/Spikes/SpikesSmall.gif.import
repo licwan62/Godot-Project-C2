@@ -1,0 +1,15 @@
+[remap]
+
+importer="import_gif_to_sprite_frames"
+type="SpriteFrames"
+uid="uid://c55k3xnfqhgex"
+path="res://.godot/imported/SpikesSmall.gif-5afdc422de93e916e284ba38cbc0ca47.tres"
+
+[deps]
+
+source_file="res://assets/objects/Spikes/SpikesSmall.gif"
+dest_files=["res://.godot/imported/SpikesSmall.gif-5afdc422de93e916e284ba38cbc0ca47.tres"]
+
+[params]
+
+frames_per_second=30

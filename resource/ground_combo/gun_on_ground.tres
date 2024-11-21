@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="GroundComboResource" load_steps=2 format=3 uid="uid://bpmyboyr36pdw"]
+
+[ext_resource type="Script" path="res://resource/ground_combo/ground_combo.gd" id="1_6rf13"]
+
+[resource]
+script = ExtResource("1_6rf13")
+stand_on_ground_combo = Array[StringName]([&"gun_fire_stand"])
+move_on_ground_combo = Array[StringName]([&"gun_fire_run"])

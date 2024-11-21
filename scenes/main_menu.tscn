@@ -1,0 +1,171 @@
+[gd_scene load_steps=6 format=3 uid="uid://lrfh7jm17g6a"]
+
+[ext_resource type="Script" path="res://scenes/main_menu.gd" id="1_qt3xa"]
+[ext_resource type="Theme" uid="uid://04himsfca34n" path="res://resource/hud_theme.tres" id="2_evxap"]
+[ext_resource type="Texture2D" uid="uid://b6cnxhdspm851" path="res://assets/example.png" id="2_sdoeh"]
+[ext_resource type="Texture2D" uid="uid://vh71dxfm4lt2" path="res://assets/logo_50per.png" id="2_t38vi"]
+
+[sub_resource type="Theme" id="Theme_inytk"]
+
+[node name="UILayer" type="CanvasLayer"]
+script = ExtResource("1_qt3xa")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_sdoeh")
+expand_mode = 2
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -384.0
+offset_top = -136.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = ExtResource("2_evxap")
+text = "Move       WASD
+Dodge     L     
+Attack      F
+Jump        K"
+
+[node name="MainMenu" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_evxap")
+
+[node name="PanelLeft" type="MarginContainer" parent="MainMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -368.0
+offset_top = -196.0
+offset_right = -22.0
+offset_bottom = 144.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu/PanelLeft"]
+layout_mode = 2
+
+[node name="Logo" type="TextureRect" parent="MainMenu/PanelLeft/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource("2_t38vi")
+
+[node name="PanelContainer" type="PanelContainer" parent="MainMenu/PanelLeft/VBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu/PanelLeft/VBoxContainer/PanelContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Play" type="Button" parent="MainMenu/PanelLeft/VBoxContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_inytk")
+text = "Play"
+flat = true
+alignment = 0
+
+[node name="Help" type="Button" parent="MainMenu/PanelLeft/VBoxContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Help"
+flat = true
+alignment = 0
+
+[node name="Story" type="Button" parent="MainMenu/PanelLeft/VBoxContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Story"
+flat = true
+alignment = 0
+
+[node name="Gallery" type="Button" parent="MainMenu/PanelLeft/VBoxContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Gallery"
+flat = true
+alignment = 0
+
+[node name="Exit" type="Button" parent="MainMenu/PanelLeft/VBoxContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Exit"
+flat = true
+alignment = 0
+
+[node name="PanelDetai" type="MarginContainer" parent="MainMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 160.0
+offset_top = -67.0
+offset_right = 442.0
+offset_bottom = 136.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu/PanelDetai"]
+layout_mode = 2
+
+[node name="PanelContainer2" type="PanelContainer" parent="MainMenu/PanelDetai/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MainMenu/PanelDetai/VBoxContainer/PanelContainer2"]
+layout_mode = 2
+text = "Setting"
+
+[node name="PanelContainer" type="PanelContainer" parent="MainMenu/PanelDetai/VBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu/PanelDetai/VBoxContainer/PanelContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Play" type="Button" parent="MainMenu/PanelDetai/VBoxContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_inytk")
+text = "Audio"
+flat = true
+alignment = 0
+
+[node name="Help" type="Button" parent="MainMenu/PanelDetai/VBoxContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "SE"
+flat = true
+alignment = 0
+
+[node name="Operation" type="Button" parent="MainMenu/PanelDetai/VBoxContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Background Sound"
+flat = true
+alignment = 0
+
+[node name="Exit" type="Button" parent="MainMenu/PanelDetai/VBoxContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Return"
+flat = true
+alignment = 0
+
+[connection signal="button_down" from="MainMenu/PanelLeft/VBoxContainer/PanelContainer/VBoxContainer/Play" to="." method="_on_play_button_down"]
+[connection signal="pressed" from="MainMenu/PanelLeft/VBoxContainer/PanelContainer/VBoxContainer/Help" to="." method="_on_help_pressed"]
+[connection signal="pressed" from="MainMenu/PanelLeft/VBoxContainer/PanelContainer/VBoxContainer/Story" to="." method="_on_story_pressed"]
+[connection signal="pressed" from="MainMenu/PanelLeft/VBoxContainer/PanelContainer/VBoxContainer/Gallery" to="." method="_on_gallery_pressed"]
+[connection signal="pressed" from="MainMenu/PanelLeft/VBoxContainer/PanelContainer/VBoxContainer/Exit" to="." method="_on_exit_pressed"]

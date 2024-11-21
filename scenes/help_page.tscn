@@ -1,0 +1,80 @@
+[gd_scene load_steps=8 format=3 uid="uid://dwc1iknw8rvpa"]
+
+[ext_resource type="FontFile" uid="uid://cwsklbj8xil82" path="res://assets/fonts/junction_bold.otf" id="1_264ii"]
+[ext_resource type="Script" path="res://scenes/help_page.gd" id="2_3icn5"]
+[ext_resource type="Texture2D" uid="uid://b6cnxhdspm851" path="res://assets/example.png" id="3_vmxej"]
+[ext_resource type="Theme" uid="uid://04himsfca34n" path="res://resource/hud_theme.tres" id="6_eqyxl"]
+[ext_resource type="LabelSettings" uid="uid://bvjr3ynicskkn" path="res://assets/topbar_label_settings.tres" id="7_fwifh"]
+[ext_resource type="Texture2D" uid="uid://cfvjufu12cyvs" path="res://addons/limboai/icons/BTAction.svg" id="8_26jx6"]
+
+[sub_resource type="Theme" id="Theme_dlkea"]
+default_font = ExtResource("1_264ii")
+default_font_size = 50
+
+[node name="HelpPage" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_3icn5")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+self_modulate = Color(0.824259, 0.582769, 0.573927, 1)
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_vmxej")
+expand_mode = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 256.0
+offset_top = 80.0
+offset_right = -256.0
+offset_bottom = -72.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("6_eqyxl")
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="Title" type="Label" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_dlkea")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0.0923971, 0.0923971, 0.0923971, 1)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/outline_size = 10
+text = "Helping Center"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Content" type="Label" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+text = "Move Left & Right -> A & D
+Jump -> K
+Attack -> J
+Dash -> l
+Open Weapon Table -> O
+"
+label_settings = ExtResource("7_fwifh")
+horizontal_alignment = 1
+justification_flags = 162
+uppercase = true
+
+[node name="Button" type="Button" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "Back"
+icon = ExtResource("8_26jx6")
+
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/Button" to="." method="_on_button_pressed"]

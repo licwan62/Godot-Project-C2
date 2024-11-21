@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://dstt3l8j3iowt"]
+
+[ext_resource type="Texture2D" uid="uid://wfgmifylongj" path="res://assets/tv.png" id="1_74a8x"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vrs3p"]
+atlas = ExtResource("1_74a8x")
+region = Rect2(0, 0, 480, 480)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p78pb"]
+atlas = ExtResource("1_74a8x")
+region = Rect2(0, 480, 480, 480)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_082ue"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vrs3p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p78pb")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rnh6l"]
+size = Vector2(64, 64)
+
+[node name="TV" type="Area2D"]
+collision_layer = 5
+collision_mask = 4
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(32, -32)
+scale = Vector2(0.133333, 0.133333)
+sprite_frames = SubResource("SpriteFrames_082ue")
+frame_progress = 0.247057
+offset = Vector2(0, 27.375)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(32, -32)
+shape = SubResource("RectangleShape2D_rnh6l")

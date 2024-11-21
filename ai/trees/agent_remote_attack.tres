@@ -1,0 +1,156 @@
+[gd_resource type="BehaviorTree" load_steps=39 format=3 uid="uid://b6qdrqnexnakg"]
+
+[ext_resource type="Script" path="res://ai/tasks/play_animation.gd" id="1_784ws"]
+[ext_resource type="Script" path="res://ai/tasks/move_forward.gd" id="1_i5u2w"]
+[ext_resource type="Script" path="res://ai/tasks/detect_target.gd" id="2_1au4p"]
+[ext_resource type="Script" path="res://ai/tasks/face_target.gd" id="3_iw18k"]
+[ext_resource type="Script" path="res://ai/tasks/turn_on_edge.gd" id="4_lhr4p"]
+[ext_resource type="Script" path="res://ai/tasks/rush_to_good_postion.gd" id="5_qeq0r"]
+[ext_resource type="Script" path="res://ai/tasks/dash_back.gd" id="6_xybrs"]
+
+[sub_resource type="BlackboardPlan" id="BlackboardPlan_h4arw"]
+var/speed/name = &"speed"
+var/speed/type = 3
+var/speed/value = 100.0
+var/speed/hint = 1
+var/speed/hint_string = "100.0, 200.0"
+var/ray_cast_to_floor/name = &"ray_cast_to_floor"
+var/ray_cast_to_floor/type = 22
+var/ray_cast_to_floor/value = NodePath("Root/RayCastToFloor")
+var/ray_cast_to_floor/hint = 0
+var/ray_cast_to_floor/hint_string = ""
+var/ray_cast_to_player/name = &"ray_cast_to_player"
+var/ray_cast_to_player/type = 22
+var/ray_cast_to_player/value = NodePath("Root/RayCastToPlayer")
+var/ray_cast_to_player/hint = 0
+var/ray_cast_to_player/hint_string = ""
+var/anim_sprite/name = &"anim_sprite"
+var/anim_sprite/type = 22
+var/anim_sprite/value = NodePath("Root/Appearance/AnimatedSprite2D")
+var/anim_sprite/hint = 0
+var/anim_sprite/hint_string = ""
+
+[sub_resource type="BBVariant" id="BBVariant_ywo08"]
+type = 3
+saved_value = 100.0
+resource_name = "100"
+
+[sub_resource type="BTSetVar" id="BTSetVar_rgffp"]
+variable = &"speed"
+value = SubResource("BBVariant_ywo08")
+
+[sub_resource type="BTAction" id="BTAction_1s4vt"]
+script = ExtResource("1_784ws")
+anim_to_play = &"walk"
+anim_sprite_offset = Vector2(0, 0)
+
+[sub_resource type="BTAction" id="BTAction_vmsom"]
+script = ExtResource("1_i5u2w")
+
+[sub_resource type="BTAction" id="BTAction_nmgec"]
+script = ExtResource("4_lhr4p")
+
+[sub_resource type="BTComment" id="BTComment_cn3pc"]
+custom_name = "output detected target in blackboard"
+
+[sub_resource type="BTCondition" id="BTCondition_ykavd"]
+children = [SubResource("BTComment_cn3pc")]
+script = ExtResource("2_1au4p")
+output_var = &"target"
+
+[sub_resource type="BTParallel" id="BTParallel_lqv2j"]
+children = [SubResource("BTAction_vmsom"), SubResource("BTAction_nmgec"), SubResource("BTCondition_ykavd")]
+
+[sub_resource type="BTSequence" id="BTSequence_g0mpg"]
+custom_name = "Hanging Around"
+children = [SubResource("BTAction_1s4vt"), SubResource("BTParallel_lqv2j")]
+
+[sub_resource type="BBVariant" id="BBVariant_llntr"]
+type = 3
+saved_value = 200.0
+resource_name = "200"
+
+[sub_resource type="BTSetVar" id="BTSetVar_d2ydi"]
+variable = &"speed"
+value = SubResource("BBVariant_llntr")
+
+[sub_resource type="BTAction" id="BTAction_2ripm"]
+script = ExtResource("3_iw18k")
+target_var = &"target"
+facing = true
+
+[sub_resource type="BTWait" id="BTWait_dvgx3"]
+duration = 0.5
+
+[sub_resource type="BTAction" id="BTAction_t4fib"]
+script = ExtResource("5_qeq0r")
+target_var = &"target"
+
+[sub_resource type="BTTimeLimit" id="BTTimeLimit_yqlxt"]
+time_limit = 3.0
+children = [SubResource("BTAction_t4fib")]
+
+[sub_resource type="BTSequence" id="BTSequence_7rblm"]
+custom_name = "Pursue Target"
+children = [SubResource("BTAction_2ripm"), SubResource("BTWait_dvgx3"), SubResource("BTTimeLimit_yqlxt")]
+
+[sub_resource type="BTAction" id="BTAction_bwvki"]
+script = ExtResource("1_784ws")
+anim_to_play = &"dash"
+anim_sprite_offset = Vector2(-45, 0)
+
+[sub_resource type="BTAction" id="BTAction_crnuh"]
+script = ExtResource("6_xybrs")
+dash_speed = 500
+dash_duration_sec = 0
+desire_dash_distance = 100.0
+
+[sub_resource type="BTSequence" id="BTSequence_v2hkl"]
+custom_name = "Dash Back"
+children = [SubResource("BTAction_bwvki"), SubResource("BTAction_crnuh")]
+
+[sub_resource type="BTAction" id="BTAction_ufuuq"]
+script = ExtResource("1_784ws")
+anim_to_play = &"aim"
+anim_sprite_offset = Vector2(0, 0)
+
+[sub_resource type="BTWait" id="BTWait_s3g2t"]
+
+[sub_resource type="BTAction" id="BTAction_sr02d"]
+script = ExtResource("1_784ws")
+anim_to_play = &"shoot"
+anim_sprite_offset = Vector2(0, 0)
+
+[sub_resource type="BBNode" id="BBNode_vxu6a"]
+saved_value = NodePath(".")
+resource_name = "."
+
+[sub_resource type="BTCallMethod" id="BTCallMethod_5atpu"]
+node = SubResource("BBNode_vxu6a")
+method = &"attack"
+
+[sub_resource type="BTWait" id="BTWait_j7vro"]
+duration = 0.5
+
+[sub_resource type="BTSequence" id="BTSequence_uvqrl"]
+custom_name = "Remote Attack"
+children = [SubResource("BTAction_ufuuq"), SubResource("BTWait_s3g2t"), SubResource("BTAction_sr02d"), SubResource("BTCallMethod_5atpu"), SubResource("BTWait_j7vro")]
+
+[sub_resource type="BTSequence" id="BTSequence_po6cv"]
+custom_name = "Remote Attack  Combo"
+children = [SubResource("BTSequence_7rblm"), SubResource("BTSequence_v2hkl"), SubResource("BTSequence_uvqrl")]
+
+[sub_resource type="BTCooldown" id="BTCooldown_05g8f"]
+duration = 5.0
+children = [SubResource("BTSequence_po6cv")]
+
+[sub_resource type="BTSequence" id="BTSequence_p6oqd"]
+custom_name = "Attacking"
+children = [SubResource("BTSetVar_d2ydi"), SubResource("BTCooldown_05g8f")]
+
+[sub_resource type="BTSequence" id="BTSequence_ensmy"]
+children = [SubResource("BTSetVar_rgffp"), SubResource("BTSequence_g0mpg"), SubResource("BTSequence_p6oqd")]
+
+[resource]
+blackboard_plan = SubResource("BlackboardPlan_h4arw")
+root_task = SubResource("BTSequence_ensmy")

@@ -1,0 +1,90 @@
+[gd_scene load_steps=8 format=3 uid="uid://dj3s1fmd7c8nw"]
+
+[ext_resource type="Script" path="res://scenes/help_page.gd" id="2_jf0x8"]
+[ext_resource type="Texture2D" uid="uid://b6cnxhdspm851" path="res://assets/example.png" id="3_4kwya"]
+[ext_resource type="Theme" uid="uid://04himsfca34n" path="res://resource/hud_theme.tres" id="5_s4w6d"]
+[ext_resource type="FontFile" uid="uid://cwsklbj8xil82" path="res://assets/fonts/junction_bold.otf" id="6_kqpng"]
+[ext_resource type="LabelSettings" uid="uid://bvjr3ynicskkn" path="res://assets/topbar_label_settings.tres" id="7_e4etb"]
+[ext_resource type="Texture2D" uid="uid://cfvjufu12cyvs" path="res://addons/limboai/icons/BTAction.svg" id="8_43fkv"]
+
+[sub_resource type="Theme" id="Theme_dlkea"]
+default_font = ExtResource("6_kqpng")
+default_font_size = 50
+
+[node name="StoryBoard" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_jf0x8")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+self_modulate = Color(0.824259, 0.582769, 0.573927, 1)
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_4kwya")
+expand_mode = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+custom_minimum_size = Vector2(800, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 256.0
+offset_top = 80.0
+offset_right = -256.0
+offset_bottom = -72.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("5_s4w6d")
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="Title" type="Label" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_dlkea")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0.0923971, 0.0923971, 0.0923971, 1)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/outline_size = 10
+text = "Story Line"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="Content" type="Label" parent="CanvasLayer/VBoxContainer/ScrollContainer"]
+custom_minimum_size = Vector2(800, 0)
+layout_mode = 2
+text = "Lee is a high school student feeling bored in repeated daily study. As usual Lee swiping through the mobile, noticing the news that a great amount of people been kidnapped overseas tempted by “recruiting well-paid work” which is scamming message from criminals. 
+
+As result they have been forced to do some telecommuting fraud and stuck by the criminals. 
+
+Lee make a comment, on the next day, he received a anonymous message on mobile said “You are qualified to be the beta player in the best game in the world”
+
+Lee clicked on link and decide to have a try, and so the game start.
+
+
+"
+label_settings = ExtResource("7_e4etb")
+autowrap_mode = 2
+justification_flags = 162
+
+[node name="Button" type="Button" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "Back"
+icon = ExtResource("8_43fkv")
+
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/Button" to="." method="_on_button_pressed"]

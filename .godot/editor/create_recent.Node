@@ -1,0 +1,14 @@
+TextureRect
+CanvasLayer
+AudioStreamPlayer
+AudioStreamPlayer2D
+HBoxContainer
+VBoxContainer
+MarginContainer
+ScrollContainer
+VScrollBar
+Button
+Label
+World
+StaticBody2D
+CollisionShape2D

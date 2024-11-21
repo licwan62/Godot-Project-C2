@@ -1,0 +1,11 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://bvjr3ynicskkn"]
+
+[ext_resource type="FontFile" uid="uid://cwsklbj8xil82" path="res://assets/fonts/junction_bold.otf" id="1_vltms"]
+
+[resource]
+font = ExtResource("1_vltms")
+font_size = 30
+font_color = Color(0.4956, 0.77686, 0.84, 1)
+outline_size = 10
+outline_color = Color(0.125911, 0.125911, 0.125911, 1)
+shadow_size = 5

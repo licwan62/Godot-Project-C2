@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="AirComboResource" load_steps=2 format=3 uid="uid://tyqat1agskih"]
+
+[ext_resource type="Script" path="res://resource/air_combo/air_combo.gd" id="1_bh5ei"]
+
+[resource]
+script = ExtResource("1_bh5ei")
+air_combo = Array[StringName]([&"gun_fire_run"])
+slash_down = &""

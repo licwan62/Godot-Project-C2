@@ -1,0 +1,104 @@
+[gd_scene load_steps=7 format=3 uid="uid://dv805gvtu1wm6"]
+
+[ext_resource type="Script" path="res://manager/Hud.gd" id="1_jt22s"]
+[ext_resource type="FontFile" uid="uid://cwsklbj8xil82" path="res://assets/fonts/junction_bold.otf" id="2_2ldgi"]
+[ext_resource type="LabelSettings" uid="uid://bvjr3ynicskkn" path="res://assets/topbar_label_settings.tres" id="2_tnkeb"]
+[ext_resource type="Theme" uid="uid://04himsfca34n" path="res://resource/hud_theme.tres" id="3_826jj"]
+[ext_resource type="Script" path="res://manager/debug_buttons.gd" id="4_om0yw"]
+
+[sub_resource type="Theme" id="Theme_kt6hj"]
+default_font = ExtResource("2_2ldgi")
+default_font_size = 30
+
+[node name="Hud" type="CanvasLayer"]
+script = ExtResource("1_jt22s")
+
+[node name="DebugButtons" type="VBoxContainer" parent="."]
+offset_top = 64.0
+offset_right = 152.0
+offset_bottom = 256.0
+theme = ExtResource("3_826jj")
+script = ExtResource("4_om0yw")
+
+[node name="CameraMovementButton" type="Button" parent="DebugButtons"]
+layout_mode = 2
+toggle_mode = true
+shortcut_feedback = false
+text = "camera on test"
+
+[node name="ClearButton" type="Button" parent="DebugButtons"]
+layout_mode = 2
+text = "world clear test"
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Topbar" type="PanelContainer" parent="Control"]
+layout_mode = 1
+offset_right = 1152.0
+offset_bottom = 60.0
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/Topbar"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_right = 15
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/Topbar/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="StateMachine" type="HBoxContainer" parent="Control/Topbar/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+theme = SubResource("Theme_kt6hj")
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="Control/Topbar/MarginContainer/HBoxContainer/StateMachine"]
+layout_mode = 2
+text = "State"
+label_settings = ExtResource("2_tnkeb")
+
+[node name="StateName" type="Label" parent="Control/Topbar/MarginContainer/HBoxContainer/StateMachine"]
+layout_mode = 2
+text = "IDLE"
+
+[node name="WeaponStatus" type="HBoxContainer" parent="Control/Topbar/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+theme = SubResource("Theme_kt6hj")
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="Control/Topbar/MarginContainer/HBoxContainer/WeaponStatus"]
+layout_mode = 2
+text = "Weapon"
+label_settings = ExtResource("2_tnkeb")
+
+[node name="WeaponName" type="Label" parent="Control/Topbar/MarginContainer/HBoxContainer/WeaponStatus"]
+layout_mode = 2
+text = "None"
+
+[node name="FragmentStatus" type="HBoxContainer" parent="Control/Topbar/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+theme = SubResource("Theme_kt6hj")
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="Control/Topbar/MarginContainer/HBoxContainer/FragmentStatus"]
+layout_mode = 2
+text = "Fragment"
+label_settings = ExtResource("2_tnkeb")
+
+[node name="FragmentCount" type="Label" parent="Control/Topbar/MarginContainer/HBoxContainer/FragmentStatus"]
+layout_mode = 2
+text = "50"
+
+[connection signal="toggled" from="DebugButtons/CameraMovementButton" to="DebugButtons" method="_on_camera_movement_button_toggled"]
+[connection signal="pressed" from="DebugButtons/ClearButton" to="DebugButtons" method="_on_clear_button_pressed"]

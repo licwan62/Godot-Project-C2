@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="GroundComboResource" load_steps=2 format=3 uid="uid://hvw0kvuklhyh"]
+
+[ext_resource type="Script" path="res://resource/ground_combo/ground_combo.gd" id="1_imday"]
+
+[resource]
+script = ExtResource("1_imday")
+stand_on_ground_combo = Array[StringName]([&"kick_up", &"kick_stand", &"kick_down", &"punch_up"])
+move_on_ground_combo = Array[StringName]([&"punch_1", &"punch_2", &"kick_stand", &"kick_up"])
